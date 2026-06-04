@@ -139,6 +139,7 @@ function normalizeResponse(value) {
   const response = String(value || '').trim().toLowerCase();
   if (response === 'attending' || response === 'accepted' || response === 'yes' || response === 'true') return 'attending';
   if (response === 'declined' || response === 'no') return 'declined';
+  if (!response || response === 'waiting' || response === 'false') return 'waiting';
   return 'waiting';
 }
 
