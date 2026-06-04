@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="card" x1="8" y1="16" x2="56" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF5F8"/>
+      <stop offset="1" stop-color="#FADADD"/>
+    </linearGradient>
+    <linearGradient id="heart" x1="20" y1="18" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F4A7BB"/>
+      <stop offset=".58" stop-color="#E8789A"/>
+      <stop offset="1" stop-color="#D4537E"/>
+    </linearGradient>
+  </defs>
+  <rect x="7" y="17" width="50" height="30" rx="8" fill="url(#card)" stroke="#E8789A" stroke-width="3"/>
+  <path d="M12 24c8 5.7 14.7 8.6 20 8.6S44 29.7 52 24" fill="none" stroke="#F4A7BB" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M32 44C26.5 38.6 18.8 34.1 18.8 26.8C18.8 22.2 22 19 26.3 19C29 19 31.1 20.6 32 22.7C32.9 20.6 35 19 37.7 19C42 19 45.2 22.2 45.2 26.8C45.2 34.1 37.5 38.6 32 44Z" fill="url(#heart)"/>
+  <path d="M23.3 24.4C24.4 22 27.1 21.6 28.7 23" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" opacity=".72"/>
+</svg>
