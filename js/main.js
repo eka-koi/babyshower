@@ -1,9 +1,13 @@
+// Yes, I know, these are not encrypted/hidden; I doubt someone like you would even check this XD, but if you do, firstly, I am impresed, and please don't abuse it. Thanks! <3
 const REGISTRY_URL = 'https://www.myregistry.com/baby-registry/erika-de-vega-and-koi-gevana-bacoor-cavite/5448978/giftlist';
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwnml7G6X4RbHeowVwhOFNQan1hW1GXOBsPEqnVpzuR7Duxn5wYoX5yILOIGqmLUBxA/exec';
 
 document.addEventListener('DOMContentLoaded', init);
 
 async function init() {
+  // Lock scroll immediately — user always starts at the top while loading
+  document.documentElement.style.overflow = 'hidden';
+  window.scrollTo(0, 0);
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hasGsap = typeof window.gsap !== 'undefined';
   const ref = new URLSearchParams(window.location.search).get('ref');
@@ -81,6 +85,9 @@ function showOverlay(state) {
   const hideOverlay = () => {
     overlay.style.display = 'none';
     overlay.removeEventListener('transitionend', onTransitionEnd);
+    // Unlock scroll and snap to top before revealing content
+    window.scrollTo(0, 0);
+    document.documentElement.style.overflow = '';
     revealMainContent();
   };
   const onTransitionEnd = (event) => {
@@ -104,22 +111,40 @@ function revealMainContent() {
 }
 
 function prefillForm(result) {
-  const nameInput = document.querySelector('input[name="name"]');
-  const guestInput = document.querySelector('input[name="guests"]');
+  const nameHidden = document.querySelector('input[name="name"]');
+  const guestsHidden = document.querySelector('input[name="guests"]');
   const messageInput = document.querySelector('textarea[name="message"]');
   const rsvpNextHint = document.querySelector('.rsvp-next-hint');
   const tapLabel = document.querySelector('.tap-label');
   const letterFor = document.querySelector('.letter-for');
   const editBanner = document.querySelector('.edit-banner');
+  const inviteName = document.querySelector('.invite-name');
+  const invitePax = document.querySelector('.invite-pax');
   const response = normalizeResponse(result.response || (result.responded ? 'attending' : 'waiting'));
 
-  if (nameInput) nameInput.value = response === 'waiting' ? '' : (result.name || '');
-  if (guestInput) guestInput.value = result.guests || 1;
-  if (messageInput) messageInput.value = response !== 'waiting' ? (result.message || '') : '';
+  const name = result.name || '';
+  const guests = result.guests || 1;
 
+  // Populate hidden inputs (sent with form)
+  if (nameHidden) nameHidden.value = name;
+  if (guestsHidden) guestsHidden.value = guests;
+
+  // Populate letter display
+  if (inviteName) inviteName.textContent = name || 'friend';
+  if (invitePax) {
+    const count = parseInt(guests, 10) || 1;
+    invitePax.textContent = count > 1 ? `(${count} pax)` : '';
+  }
+
+  // Update envelope letter label
   if (letterFor) {
-    letterFor.textContent = result.name || '07 / 25 / 2026';
-    letterFor.title = result.name || '07 / 25 / 2026';
+    letterFor.textContent = name || '07 / 25 / 2026';
+    letterFor.title = name || '07 / 25 / 2026';
+  }
+
+  // Preload previous response and message if they've responded before
+  if (response !== 'waiting') {
+    if (messageInput) messageInput.value = result.message || '';
   }
 
   setResponse(response);
@@ -204,10 +229,10 @@ function setupSmoothScroll(prefersReduced) {
 
 function setupHeroCard() {
   const card = document.querySelector('.invitation-card');
-  const target = document.querySelector('.rsvp-section');
+  const target = document.querySelector('.gift-section');
   if (!card || !target) return;
 
-  const scrollToRsvp = () => {
+  const scrollToGiftSection = () => {
     if (window.siteLenis) {
       window.siteLenis.scrollTo(target, { offset: -(window.innerHeight - target.offsetHeight) / 2 });
     } else {
@@ -215,11 +240,11 @@ function setupHeroCard() {
     }
   };
 
-  card.addEventListener('click', scrollToRsvp);
+  card.addEventListener('click', scrollToGiftSection);
   card.addEventListener('keydown', (event) => {
     if (event.key !== 'Enter' && event.key !== ' ') return;
     event.preventDefault();
-    scrollToRsvp();
+    scrollToGiftSection();
   });
 }
 
@@ -235,7 +260,7 @@ function scrollToSection(target) {
 
 function setupRsvpNextHint() {
   const hint = document.querySelector('.rsvp-next-hint');
-  const target = document.querySelector('.gift-section');
+  const target = document.querySelector('.rsvp-section');
   if (!hint || !target) return;
 
   hint.addEventListener('click', () => scrollToSection(target));
@@ -347,28 +372,12 @@ function setupEnvelope() {
 function setupForm() {
   const form = document.querySelector('#rsvp-form');
   if (!form) return;
-  const nameInput = form.querySelector('input[name="name"]');
 
   setupResponseChoices();
-
-  nameInput?.addEventListener('input', () => {
-    if (nameInput.value.trim()) nameInput.setCustomValidity('');
-    updateSubmitState();
-  });
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     const formData = Object.fromEntries(new FormData(form).entries());
-    const trimmedName = String(formData.name || '').trim();
-
-    if (!trimmedName) {
-      nameInput?.setCustomValidity('Please enter your name.');
-      nameInput?.reportValidity();
-      return;
-    }
-
-    nameInput?.setCustomValidity('');
-    formData.name = trimmedName;
     submitRSVP(formData);
   });
 }
@@ -385,9 +394,6 @@ function setupResponseChoices() {
 function setResponse(responseValue) {
   const response = normalizeResponse(responseValue);
   const responseInput = document.querySelector('input[name="response"]');
-  const submitButton = document.querySelector('.submit-btn');
-  const guestField = document.querySelector('.guest-field');
-  const guestInput = document.querySelector('input[name="guests"]');
 
   document.querySelectorAll('.choice-pill').forEach((button) => {
     const isSelected = button.dataset.response === response && response !== 'waiting';
@@ -397,20 +403,15 @@ function setResponse(responseValue) {
   });
 
   if (responseInput) responseInput.value = response === 'waiting' ? '' : response;
-  if (submitButton) updateSubmitState();
-
-  if (!guestField || !guestInput) return;
-  const showGuests = response !== 'declined';
-  toggleGuestField(guestField, guestInput, showGuests);
+  updateSubmitState();
 }
 
 function updateSubmitState() {
   const submitButton = document.querySelector('.submit-btn');
   const responseInput = document.querySelector('input[name="response"]');
-  const nameInput = document.querySelector('input[name="name"]');
-  if (!submitButton || !responseInput || !nameInput) return;
+  if (!submitButton || !responseInput) return;
 
-  submitButton.disabled = !responseInput.value || !nameInput.value.trim();
+  submitButton.disabled = !responseInput.value;
 }
 
 function toggleGuestField(guestField, guestInput, shouldShow) {

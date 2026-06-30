@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <base href="../">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Eka and Koi's baby shower invitation">
@@ -52,7 +53,7 @@
         </div>
 
         <div class="hero-content">
-          <article class="invitation-card" role="button" tabindex="0" aria-label="Scroll to RSVP section">
+          <article class="invitation-card" role="button" tabindex="0" aria-label="Scroll to gift section">
             <h1>You're Invited</h1>
             <svg class="wavy-line" viewBox="0 0 220 18" role="img" aria-label="decorative divider">
               <path d="M2 9 C22 1, 38 17, 58 9 S94 1, 114 9 S150 17, 170 9 S202 1, 218 9"></path>
@@ -66,87 +67,6 @@
             </div>
           </article>
         </div>
-      </section>
-
-      <section class="rsvp-section" id="rsvp">
-        <div class="section-copy rsvp-heading">
-          <h2>Will you join us?</h2>
-          <p>Let us know you're coming</p>
-        </div>
-
-        <div class="rsvp-stage">
-          <div class="envelope-wrapper">
-            <button class="envelope-button" type="button" aria-label="Open RSVP envelope">
-              <span class="envelope-scene">
-                <span class="envelope-front">
-                  <span class="letter">
-                    <span>RSVP</span>
-                    <small class="letter-for">07 / 25 / 2026</small>
-                  </span>
-                  <svg class="pocket-lines" viewBox="0 0 100 100" aria-hidden="true" preserveAspectRatio="none">
-                    <path d="M0 0 L50 58 L100 0"></path>
-                  </svg>
-                  <svg class="bottom-flap" viewBox="0 0 100 100" aria-hidden="true" preserveAspectRatio="none">
-                    <path d="M0 100 L46 24 Q50 18 54 24 L100 100 Z"></path>
-                  </svg>
-                  <svg class="seal" viewBox="0 0 64 58" aria-hidden="true">
-                    <defs>
-                      <linearGradient id="heartStickerGradient" x1="10" y1="6" x2="55" y2="52" gradientUnits="userSpaceOnUse">
-                        <stop offset="0" stop-color="#F4A7BB"></stop>
-                        <stop offset="0.58" stop-color="#E8789A"></stop>
-                        <stop offset="1" stop-color="#D4537E"></stop>
-                      </linearGradient>
-                    </defs>
-                    <path class="heart-fill" d="M32 55C22 45 6 36 6 20C6 10.5 12.5 4 21.5 4C27 4 30.5 7.2 32 11.2C33.5 7.2 37 4 42.5 4C51.5 4 58 10.5 58 20C58 36 42 45 32 55Z"></path>
-                    <path class="heart-shine" d="M13.5 16C15.5 11 21 10 24 13"></path>
-                  </svg>
-                </span>
-              </span>
-            </button>
-            <p class="tap-label">Tap to open</p>
-          </div>
-
-          <div class="rsvp-form-container" aria-live="polite">
-            <form id="rsvp-form">
-              <div class="form-header">
-                <button class="close-btn" type="button" aria-label="Close RSVP form">×</button>
-                <p class="form-kicker">RSVP</p>
-              </div>
-              <p class="edit-banner" hidden>Editing your response</p>
-              <fieldset class="attendance-field">
-                <legend>Attending?</legend>
-                <div class="pill-group" role="radiogroup" aria-label="Attending">
-                  <button class="choice-pill" type="button" role="radio" aria-checked="false" data-response="attending">Yes, I'll be there 🎉</button>
-                  <button class="choice-pill" type="button" role="radio" aria-checked="false" data-response="declined">Sorry, can't make it 😢</button>
-                </div>
-                <input type="hidden" name="response" value="">
-              </fieldset>
-              <label>
-                <span>Name/s</span>
-                <input type="text" name="name" aria-label="Name or names" required autocomplete="name">
-              </label>
-              <div class="guest-field">
-                <label>
-                  <span>Number of guests</span>
-                  <input type="number" name="guests" aria-label="Number of guests" min="1" max="10" value="1">
-                </label>
-              </div>
-
-              <label>
-                <span>A sweet message for the parents</span>
-                <textarea name="message" aria-label="A sweet message for the parents" rows="2"></textarea>
-              </label>
-
-              <button class="submit-btn" type="submit">Send RSVP</button>
-            </form>
-            <div class="confirm-message" hidden></div>
-          </div>
-        </div>
-        <button class="rsvp-next-hint" type="button" hidden aria-label="Scroll to gift section">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M6 9l6 6 6-6"></path>
-          </svg>
-        </button>
       </section>
 
       <section class="gift-section" id="gifts">
@@ -222,15 +142,90 @@
           See the Wish List ✨
         </button>
 
-        <footer class="site-footer">
-          <svg class="wavy-line" viewBox="0 0 220 18" aria-hidden="true">
-            <path d="M2 9 C22 1, 38 17, 58 9 S94 1, 114 9 S150 17, 170 9 S202 1, 218 9"></path>
-          </svg>
-          <p class="footer-title">Eka &amp; Koi · July 25, 2026 · 4:00 PM</p>
-          <p><a href="https://share.google/k8h964kCJm1fKKl88" target="_blank" rel="noopener noreferrer">Kalesa Studio Cafe</a></p>
-          <div class="footer-stars" aria-hidden="true">✦ ✦ ✦</div>
-          <a class="calendar-link" href="assets/eka-koi-baby-shower.ics" download>Add to calendar</a>
-        </footer>
+
+      </section>
+
+      <section class="rsvp-section" id="rsvp">
+        <div class="section-copy rsvp-heading">
+          <h2>Will you join us?</h2>
+          <p>Let us know you're coming</p>
+        </div>
+
+        <div class="rsvp-stage">
+          <div class="envelope-wrapper">
+            <button class="envelope-button" type="button" aria-label="Open RSVP envelope">
+              <span class="envelope-scene">
+                <span class="envelope-front">
+                  <span class="letter">
+                    <span>RSVP</span>
+                    <small class="letter-for">07 / 25 / 2026</small>
+                  </span>
+                  <svg class="pocket-lines" viewBox="0 0 100 100" aria-hidden="true" preserveAspectRatio="none">
+                    <path d="M0 0 L50 58 L100 0"></path>
+                  </svg>
+                  <svg class="bottom-flap" viewBox="0 0 100 100" aria-hidden="true" preserveAspectRatio="none">
+                    <path d="M0 100 L46 24 Q50 18 54 24 L100 100 Z"></path>
+                  </svg>
+                  <svg class="seal" viewBox="0 0 64 58" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="heartStickerGradient" x1="10" y1="6" x2="55" y2="52" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stop-color="#F4A7BB"></stop>
+                        <stop offset="0.58" stop-color="#E8789A"></stop>
+                        <stop offset="1" stop-color="#D4537E"></stop>
+                      </linearGradient>
+                    </defs>
+                    <path class="heart-fill" d="M32 55C22 45 6 36 6 20C6 10.5 12.5 4 21.5 4C27 4 30.5 7.2 32 11.2C33.5 7.2 37 4 42.5 4C51.5 4 58 10.5 58 20C58 36 42 45 32 55Z"></path>
+                    <path class="heart-shine" d="M13.5 16C15.5 11 21 10 24 13"></path>
+                  </svg>
+                </span>
+              </span>
+            </button>
+            <p class="tap-label">Tap to open</p>
+          </div>
+
+          <div class="rsvp-form-container" aria-live="polite">
+            <form id="rsvp-form">
+              <div class="form-header">
+                <button class="close-btn" type="button" aria-label="Close RSVP form">×</button>
+                <p class="form-kicker">RSVP</p>
+              </div>
+              <p class="edit-banner" hidden>Editing your response</p>
+
+              <div class="invite-letter">
+                <p class="invite-greeting">Hello, <strong class="invite-name"></strong> 👋</p>
+                <p class="invite-body">You're invited to celebrate the upcoming arrival of Eka &amp; Koi's little one. And we're saving a spot just for you <span class="invite-pax"></span>. We'd love to see you there!</p>
+                <p class="invite-dress-code">Dress in these colors:</p>
+                <div class="color-circles">
+                  <span class="color-circle white" aria-label="White">White</span>
+                  <span class="color-circle cream" aria-label="Cream">Cream</span>
+                  <span class="color-circle beige" aria-label="Beige">Beige</span>
+                  <span class="color-circle ecru" aria-label="Ecru">Ecru</span>
+                </div>
+
+              </div>
+
+              <input type="hidden" name="name" value="">
+              <input type="hidden" name="guests" value="">
+
+              <fieldset class="attendance-field">
+                <legend>Will you be joining us?</legend>
+                <div class="pill-group" role="radiogroup" aria-label="Attending">
+                  <button class="choice-pill" type="button" role="radio" aria-checked="false" data-response="attending">Yes, I'll be there</button>
+                  <button class="choice-pill" type="button" role="radio" aria-checked="false" data-response="declined">Sorry, can't make it</button>
+                </div>
+                <input type="hidden" name="response" value="">
+              </fieldset>
+
+              <label>
+                <span>Leave a sweet message ✨</span>
+                <textarea name="message" aria-label="A sweet message for the parents" rows="2" placeholder="Optional — share some love!"></textarea>
+              </label>
+
+              <button class="submit-btn" type="submit">Send RSVP</button>
+            </form>
+            <div class="confirm-message" hidden></div>
+          </div>
+        </div>
       </section>
     </main>
 

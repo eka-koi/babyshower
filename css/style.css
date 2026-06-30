@@ -318,7 +318,6 @@ h2,
   color: var(--text);
   font-size: 1rem;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .invitation-card a,
@@ -498,8 +497,16 @@ h2,
   justify-items: center;
   gap: var(--space-xl);
   padding: 5rem 1.2rem;
-  background: #F9D7E1;
   position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(at 15% 20%, #ffcadb 0px, transparent 45%),
+    radial-gradient(at 85% 15%, #fcd6c7 0px, transparent 30%),
+    radial-gradient(at 25% 80%, #e8d6ff 0px, transparent 45%),
+    radial-gradient(at 80% 75%, #ffd6e8 0px, transparent 40%),
+    radial-gradient(at 55% 50%, #ffffff 0px, transparent 35%),
+    #fde4ff;
 }
 
 .section-copy {
@@ -811,6 +818,97 @@ h2,
   line-height: 1;
 }
 
+/* Letter-style invite display in RSVP form */
+.invite-letter {
+  background: rgba(255, 245, 248, 0.7);
+  border: 1px solid rgba(212, 175, 106, 0.35);
+  border-radius: 14px;
+  padding: 1rem 1.2rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.invite-greeting {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+
+.invite-greeting strong {
+  color: var(--rose-dark, #D4537E);
+}
+
+.invite-body {
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.invite-dress-code {
+  margin: 0.1rem 0 0;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.color-circles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.8rem;
+  align-items: center;
+}
+
+.color-circle {
+  --circle-fill: var(--text);
+  --circle-ring: rgba(122, 74, 90, 0.16);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.color-circle::after {
+  content: "";
+  width: 0.55rem;
+  height: 0.55rem;
+  flex: 0 0 0.55rem;
+  border-radius: 50%;
+  background: var(--circle-fill);
+  box-shadow: 0 0 0 1px var(--circle-ring);
+}
+
+.color-circle.white {
+  --circle-fill: #ffffff;
+  --circle-ring: rgba(168, 168, 168, 0.43);
+}
+
+.color-circle.cream {
+  --circle-fill: var(--cream);
+  --circle-ring: rgb(255, 199, 109);
+}
+
+.color-circle.beige {
+  --circle-fill: #E7CBA7;
+  --circle-ring: rgba(194, 136, 0, 0.79);
+}
+
+.color-circle.ecru {
+  --circle-fill: #F2E2B8;
+  --circle-ring: rgba(166, 127, 0, 0.73);
+}
+
+.invite-pax {
+  font-style: italic;
+  color: var(--rose-dark, #D4537E);
+  font-weight: 600;
+}
+
 .close-btn {
   position: absolute;
   top: 0.38rem;
@@ -832,7 +930,7 @@ h2,
 
 form {
   display: grid;
-  gap: 0.82rem;
+  gap: 1.2rem;
 }
 
 .close-btn:hover,
@@ -1074,12 +1172,21 @@ textarea {
   filter: drop-shadow(0 -4px 10px rgba(191, 123, 95, 0.22));
 }
 
+.gift-inner {
+  padding-top: 25%;
+  height: 100%;
+  display: grid;
+  justify-items: center;
+
+}
+
 .gift-nook {
   width: 500px;
   height: 380px;
   max-width: 94vw;
   position: relative;
   margin: 2.4rem auto 0;
+  margin-top: 8rem;
   transform-origin: center bottom;
   will-change: transform;
 }
